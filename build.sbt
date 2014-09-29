@@ -1,4 +1,6 @@
-name := """eappearance"""
+organization := "com.eappearance"
+
+name := "eappearance"
 
 version := "1.0-SNAPSHOT"
 
