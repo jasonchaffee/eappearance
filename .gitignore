@@ -30,6 +30,7 @@ target
 
 # Idea IDE
 .idea
+.idea_modules
 *.iml
 *.launch
 
@@ -48,7 +49,10 @@ target/
 lib_managed/
 src_managed/
 project/boot/
+project/project/
+project/target/
 project/plugins/project/
+out/
 
 # Scala-IDE
 .scala_dependencies
@@ -60,3 +64,6 @@ public/app/assets/components/
 
 # Node modules
 node_modules/
+
+# Activator
+RUNNING_PID
