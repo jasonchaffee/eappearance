@@ -24,13 +24,11 @@ scalacOptions ++= Seq(
 )
 
 scalacOptions in (Compile, doc) ++= Seq(
-  "-external-urls:scala=http://www.scala-lang.org/api/current/",
   "-no-link-warnings"
 )
 
 javacOptions ++= Seq(
-  "-encoding",
-  "UTF-8",
+  "-encoding", "UTF-8",
   "-source", "1.8",
   "-target", "1.8",
   "-Xlint:all"
