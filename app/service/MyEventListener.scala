@@ -1,8 +1,8 @@
 package service
 
-import securesocial.core._
-import play.api.mvc.{ Session, RequestHeader }
 import play.api.Logger
+import play.api.mvc.{RequestHeader, Session}
+import securesocial.core._
 
 /**
  * A sample event listener

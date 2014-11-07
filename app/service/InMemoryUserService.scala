@@ -2,9 +2,10 @@ package service
 
 import play.api.Logger
 import securesocial.core._
-import securesocial.core.providers.{ UsernamePasswordProvider, MailToken }
+import securesocial.core.providers.{MailToken, UsernamePasswordProvider}
+import securesocial.core.services.{SaveMode, UserService}
+
 import scala.concurrent.Future
-import securesocial.core.services.{ UserService, SaveMode }
 
 /**
  * A Sample In Memory user service in Scala
@@ -57,13 +58,15 @@ class InMemoryUserService extends UserService[DemoUser] {
     }
     // first see if there is a user with this BasicProfile already.
     val maybeUser = users.find {
-      case (key, value) if value.identities.exists(su => su.providerId == user.providerId && su.userId == user.userId) => true
+      case (key, value) if value.identities.exists(
+        su => su.providerId == user.providerId && su.userId == user.userId) => true
       case _ => false
     }
     maybeUser match {
       case Some(existingUser) =>
         val identities = existingUser._2.identities
-        val updatedList = identities.patch(identities.indexWhere(i => i.providerId == user.providerId && i.userId == user.userId), Seq(user), 1)
+        val updatedList = identities.patch(
+          identities.indexWhere(i => i.providerId == user.providerId && i.userId == user.userId), Seq(user), 1)
         val updatedUser = existingUser._2.copy(identities = updatedList)
         users = users + (existingUser._1 -> updatedUser)
         Future.successful(updatedUser)
@@ -94,7 +97,9 @@ class InMemoryUserService extends UserService[DemoUser] {
   }
 
   def findToken(token: String): Future[Option[MailToken]] = {
-    Future.successful { tokens.get(token) }
+    Future.successful {
+      tokens.get(token)
+    }
   }
 
   def deleteToken(uuid: String): Future[Option[MailToken]] = {
