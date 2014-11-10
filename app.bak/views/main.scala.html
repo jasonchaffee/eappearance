@@ -1,0 +1,41 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta name='description' content=''>
+        <meta name='author' content=''>
+
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        @*<script type='text/javascript'>*@
+            @*window.VideoApp = {*@
+                @*VIDEO_SERVICE_URL: '@play.Play.application().configuration().getString("application.video.url")',*@
+                @*COOKIE_NAME: '@play.Play.application().configuration().getString("session.cookieName")',*@
+                @*//// DEBUG: Adding redirect to dev login*@
+                @*DEV_AUTH: '@play.Play.application().configuration().getString("authentication.local.feature.enable")',*@
+                @*DEV_TOKEN: '@play.Play.application().configuration().getString("authorization.local.token")'*@
+                @*////*@
+            @*}*@
+        @*</script>*@
+        @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url, module = routes.Assets.at("javascripts/main").url, productionFolderPrefix = "")
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <span class="brand">@Messages("application.name")</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="padding-top:30px">
+            @content
+        </div>
+    </body>
+</html>
