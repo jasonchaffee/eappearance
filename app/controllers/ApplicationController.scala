@@ -24,6 +24,10 @@ class ApplicationController @Inject() (implicit val env: Environment[User, Cache
     Future.successful(Ok(views.html.index(request.identity)))
   }
 
+  def profile = SecuredAction.async { implicit request =>
+    Future.successful(Ok(views.html.profile(request.identity)))
+  }
+
   /**
    * Handles the Sign In action.
    *

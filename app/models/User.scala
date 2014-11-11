@@ -6,7 +6,7 @@ import java.util.UUID
 /**
  * The user object.
  *
- * @param userID The unique ID of the user.
+ * @param uuid The unique ID of the user.
  * @param loginInfo The linked login info.
  * @param firstName Maybe the first name of the authenticated user.
  * @param lastName Maybe the last name of the authenticated user.
@@ -15,8 +15,9 @@ import java.util.UUID
  * @param avatarURL Maybe the avatar URL of the authenticated provider.
  */
 case class User(
-  userID: UUID,
+  uuid: UUID,
   loginInfo: LoginInfo,
+  barNumber: Option[Int],
   firstName: Option[String],
   lastName: Option[String],
   fullName: Option[String],

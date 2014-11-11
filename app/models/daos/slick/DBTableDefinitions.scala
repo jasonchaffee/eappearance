@@ -5,7 +5,8 @@ import play.api.db.slick.Config.driver.simple._
 object DBTableDefinitions {
 
   case class DBUser(
-    userID: String,
+    uuid: String,
+    barNumber: Option[Int],
     firstName: Option[String],
     lastName: Option[String],
     fullName: Option[String],
@@ -13,13 +14,14 @@ object DBTableDefinitions {
     avatarURL: Option[String])
 
   class Users(tag: Tag) extends Table[DBUser](tag, "user") {
-    def id = column[String]("userID", O.PrimaryKey)
+    def id = column[String]("uuid", O.PrimaryKey)
+    def barNumber = column[Option[Int]]("barNumber", O.NotNull)
     def firstName = column[Option[String]]("firstName")
     def lastName = column[Option[String]]("lastName")
     def fullName = column[Option[String]]("fullName")
     def email = column[Option[String]]("email")
     def avatarURL = column[Option[String]]("avatarURL")
-    def * = (id, firstName, lastName, fullName, email, avatarURL) <> (DBUser.tupled, DBUser.unapply)
+    def * = (id, barNumber, firstName, lastName, fullName, email, avatarURL) <> (DBUser.tupled, DBUser.unapply)
   }
 
   case class DBLoginInfo(
@@ -35,13 +37,13 @@ object DBTableDefinitions {
   }
 
   case class DBUserLoginInfo(
-    userID: String,
+    uuid: String,
     loginInfoId: Long)
 
   class UserLoginInfos(tag: Tag) extends Table[DBUserLoginInfo](tag, "userlogininfo") {
-    def userID = column[String]("userID", O.NotNull)
+    def uuid = column[String]("uuid", O.NotNull)
     def loginInfoId = column[Long]("loginInfoId", O.NotNull)
-    def * = (userID, loginInfoId) <> (DBUserLoginInfo.tupled, DBUserLoginInfo.unapply)
+    def * = (uuid, loginInfoId) <> (DBUserLoginInfo.tupled, DBUserLoginInfo.unapply)
   }
 
   case class DBPasswordInfo(
