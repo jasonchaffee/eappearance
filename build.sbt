@@ -1,4 +1,9 @@
 import play.PlayImport.PlayKeys._
+import net.virtualvoid.sbt.graph.Plugin._
+import sbtbuildinfo.Plugin._
+import scalariform.formatter.preferences._
+import Dependencies._
+import Webjars._
 
 organization := "com.eappearance"
 
@@ -7,6 +12,8 @@ name := "eappearance"
 version := "1.0.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
+
+shellPrompt in ThisBuild := { state => "sbt (%s)> ".format(Project.extract(state).currentProject.id) }
 
 scalaVersion := "2.11.4"
 
@@ -51,24 +58,72 @@ closureCompilerOptions += "ecmascript5"
 
 resolvers += Resolver.sonatypeRepo("releases")
 
+dependencyOverrides := Dependencies.depOverrides ++ Webjars.depOverrides
+
 libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache,
   ws,
-  "com.mohiva" %% "play-silhouette" % "1.0",
-  "net.codingwell" %% "scala-guice" % "4.0.0-beta4",
-  "com.typesafe.play" %% "play-slick" % "0.8.0",
-  "mysql" % "mysql-connector-java" % "5.1.33",
-  "org.webjars" %% "webjars-play" % "2.3.0-2",
-  "org.webjars" % "airbrake-js" % "0.3",
-  "org.webjars" % "angularjs" % "1.2.26",
-  "org.webjars" % "angular-ui-bootstrap" % "0.11.2",
-  "org.webjars" % "angular-ui-router" % "0.2.11",
-  "org.webjars" % "bootstrap" % "3.3.0",
-  "org.webjars" % "coffee-script" % "1.8.0",
-  "org.webjars" % "jquery" % "2.1.1",
-  "org.webjars" % "jquery-ui" % "1.11.1",
-  "org.webjars" % "require-css" % "0.1.7",
-  "org.webjars" % "requirejs" % "2.1.15"
+  playSilhouette,
+  playSlick,
+  twirlApi,
+  scalaGuice,
+  mysqlConnectorJava,
+  webjarsPlay,
+  webjarsAirbrakeJs,
+  webjarsAngularjs,
+  webjarsAngularUiBootstrap,
+  webjarsAngularUiRouter,
+  webjarsBootstrap,
+  webjarsCoffeeScript,
+  webjarsJquery,
+  webjarsJqueryUi,
+  webjarsRequireCss,
+  webjarsRequirejs
+)
+
+graphSettings
+
+scalariformSettings
+
+ScalariformKeys.preferences := ScalariformKeys.preferences.value
+  .setPreference(AlignParameters, true)
+  .setPreference(AlignSingleLineCaseStatements, true)
+  .setPreference(CompactControlReadability, true)
+  .setPreference(CompactStringConcatenation, false)
+  .setPreference(DoubleIndentClassDeclaration, true)
+  .setPreference(FormatXml, true)
+  .setPreference(IndentLocalDefs, false)
+  .setPreference(IndentPackageBlocks, true)
+  .setPreference(IndentSpaces, 2)
+  .setPreference(IndentWithTabs, false)
+  .setPreference(MultilineScaladocCommentsStartOnFirstLine, false)
+  .setPreference(PreserveDanglingCloseParenthesis, true)
+  .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, false)
+  .setPreference(PreserveSpaceBeforeArguments, false)
+  .setPreference(RewriteArrowSymbols, false)
+  .setPreference(SpaceBeforeColon, false)
+  .setPreference(SpaceInsideBrackets, false)
+  .setPreference(SpaceInsideParentheses, false)
+  .setPreference(SpacesWithinPatternBinders, true)
+
+buildInfoSettings
+
+sourceGenerators in Compile <+= buildInfo
+
+buildInfoPackage := "com.eappearance"
+
+buildInfoKeys := Seq[BuildInfoKey](
+  name,
+  organization,
+  version,
+  scalaVersion,
+  sbtVersion,
+  "buildTime" -> System.currentTimeMillis,
+  "commit" -> Process("git rev-parse HEAD").lines.head,
+  scalacOptions,
+  javacOptions,
+  resolvers,
+  libraryDependencies
 )

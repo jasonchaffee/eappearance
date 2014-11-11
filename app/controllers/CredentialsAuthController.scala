@@ -22,7 +22,7 @@ class CredentialsAuthController @Inject() (
   implicit val env: Environment[User, CachedCookieAuthenticator],
   val userService: UserService,
   val authInfoService: AuthInfoService)
-  extends Silhouette[User, CachedCookieAuthenticator] {
+    extends Silhouette[User, CachedCookieAuthenticator] {
 
   /**
    * Authenticates a user against the credentials provider.
@@ -30,11 +30,11 @@ class CredentialsAuthController @Inject() (
    * @return The result to display.
    */
   def authenticate = Action.async { implicit request =>
-    SignInForm.form.bindFromRequest.fold (
+    SignInForm.form.bindFromRequest.fold(
       form => Future.successful(BadRequest(views.html.signIn(form))),
       credentials => (env.providers.get(CredentialsProvider.Credentials) match {
         case Some(p: CredentialsProvider) => p.authenticate(credentials)
-        case _ => Future.failed(new AuthenticationException(s"Cannot find credentials provider"))
+        case _                            => Future.failed(new AuthenticationException(s"Cannot find credentials provider"))
       }).flatMap { loginInfo =>
         userService.retrieve(loginInfo).flatMap {
           case Some(user) => env.authenticatorService.create(user).map {

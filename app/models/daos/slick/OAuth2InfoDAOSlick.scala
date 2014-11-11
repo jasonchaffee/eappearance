@@ -8,7 +8,6 @@ import scala.concurrent.Future
 import models.daos.slick.DBTableDefinitions._
 import play.api.db.slick.Config.driver.simple._
 
-
 /**
  * The DAO to store the OAuth2 information.
  */
@@ -32,7 +31,7 @@ class OAuth2InfoDAOSlick extends DelegableAuthInfoDAO[OAuth2Info] {
         slickOAuth2Infos.filter(_.loginInfoId === infoId).firstOption match {
           case Some(info) =>
             slickOAuth2Infos update DBOAuth2Info(info.id, authInfo.accessToken, authInfo.tokenType, authInfo.expiresIn, authInfo.refreshToken, infoId)
-          case None => slickOAuth2Infos insert DBOAuth2Info(None, authInfo.accessToken, authInfo.tokenType, authInfo.expiresIn, authInfo.refreshToken, infoId) 
+          case None => slickOAuth2Infos insert DBOAuth2Info(None, authInfo.accessToken, authInfo.tokenType, authInfo.expiresIn, authInfo.refreshToken, infoId)
         }
         authInfo
       }

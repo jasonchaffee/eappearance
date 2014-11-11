@@ -8,7 +8,7 @@ import play.api.libs.concurrent.Execution.Implicits._
 import com.mohiva.play.silhouette.core._
 import com.mohiva.play.silhouette.core.providers._
 import com.mohiva.play.silhouette.core.utils.PasswordHasher
-import com.mohiva.play.silhouette.core.services.{AvatarService, AuthInfoService}
+import com.mohiva.play.silhouette.core.services.{ AvatarService, AuthInfoService }
 import com.mohiva.play.silhouette.core.exceptions.AuthenticationException
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
 import models.services.UserService
@@ -30,7 +30,7 @@ class SignUpController @Inject() (
   val authInfoService: AuthInfoService,
   val avatarService: AvatarService,
   val passwordHasher: PasswordHasher)
-  extends Silhouette[User, CachedCookieAuthenticator] {
+    extends Silhouette[User, CachedCookieAuthenticator] {
 
   /**
    * Registers a new user.
@@ -38,7 +38,7 @@ class SignUpController @Inject() (
    * @return The result to display.
    */
   def signUp = Action.async { implicit request =>
-    SignUpForm.form.bindFromRequest.fold (
+    SignUpForm.form.bindFromRequest.fold(
       form => Future.successful(BadRequest(views.html.signUp(form))),
       data => {
         val loginInfo = LoginInfo(CredentialsProvider.Credentials, data.email)

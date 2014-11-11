@@ -8,7 +8,6 @@ import scala.concurrent.Future
 import models.daos.slick.DBTableDefinitions._
 import play.api.db.slick.Config.driver.simple._
 
-
 /**
  * The DAO to store the password information.
  */
@@ -29,7 +28,7 @@ class PasswordInfoDAOSlick extends DelegableAuthInfoDAO[PasswordInfo] {
     Future.successful(authInfo)
     */
     Future.successful {
-      DB withSession {implicit session =>
+      DB withSession { implicit session =>
         val infoId = slickLoginInfos.filter(
           x => x.providerID === loginInfo.providerID && x.providerKey === loginInfo.providerKey
         ).first.id.get

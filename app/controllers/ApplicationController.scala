@@ -1,7 +1,7 @@
 package controllers
 
 import models.User
-import com.mohiva.play.silhouette.core.{LogoutEvent, Environment, Silhouette}
+import com.mohiva.play.silhouette.core.{ LogoutEvent, Environment, Silhouette }
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
 import scala.concurrent.Future
 import javax.inject.Inject
@@ -13,7 +13,7 @@ import forms._
  * @param env The Silhouette environment.
  */
 class ApplicationController @Inject() (implicit val env: Environment[User, CachedCookieAuthenticator])
-  extends Silhouette[User, CachedCookieAuthenticator] {
+    extends Silhouette[User, CachedCookieAuthenticator] {
 
   /**
    * Handles the index action.
@@ -32,7 +32,7 @@ class ApplicationController @Inject() (implicit val env: Environment[User, Cache
   def signIn = UserAwareAction.async { implicit request =>
     request.identity match {
       case Some(user) => Future.successful(Redirect(routes.ApplicationController.index))
-      case None => Future.successful(Ok(views.html.signIn(SignInForm.form)))
+      case None       => Future.successful(Ok(views.html.signIn(SignInForm.form)))
     }
   }
 
@@ -44,7 +44,7 @@ class ApplicationController @Inject() (implicit val env: Environment[User, Cache
   def signUp = UserAwareAction.async { implicit request =>
     request.identity match {
       case Some(user) => Future.successful(Redirect(routes.ApplicationController.index))
-      case None => Future.successful(Ok(views.html.signUp(SignUpForm.form)))
+      case None       => Future.successful(Ok(views.html.signUp(SignUpForm.form)))
     }
   }
 

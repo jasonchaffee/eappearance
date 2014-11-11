@@ -21,7 +21,7 @@ class SocialAuthController @Inject() (
   val env: Environment[User, CachedCookieAuthenticator],
   val userService: UserService,
   val authInfoService: AuthInfoService)
-  extends Silhouette[User, CachedCookieAuthenticator] {
+    extends Silhouette[User, CachedCookieAuthenticator] {
 
   /**
    * Authenticates a user against a social provider.

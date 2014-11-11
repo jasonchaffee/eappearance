@@ -4,14 +4,13 @@ import play.api.db.slick.Config.driver.simple._
 
 object DBTableDefinitions {
 
-  case class DBUser (
+  case class DBUser(
     userID: String,
     firstName: Option[String],
     lastName: Option[String],
     fullName: Option[String],
     email: Option[String],
-    avatarURL: Option[String]
-  )
+    avatarURL: Option[String])
 
   class Users(tag: Tag) extends Table[DBUser](tag, "user") {
     def id = column[String]("userID", O.PrimaryKey)
@@ -23,11 +22,10 @@ object DBTableDefinitions {
     def * = (id, firstName, lastName, fullName, email, avatarURL) <> (DBUser.tupled, DBUser.unapply)
   }
 
-  case class DBLoginInfo (
+  case class DBLoginInfo(
     id: Option[Long],
     providerID: String,
-    providerKey: String
-  )
+    providerKey: String)
 
   class LoginInfos(tag: Tag) extends Table[DBLoginInfo](tag, "logininfo") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
@@ -36,10 +34,9 @@ object DBTableDefinitions {
     def * = (id.?, providerID, providerKey) <> (DBLoginInfo.tupled, DBLoginInfo.unapply)
   }
 
-  case class DBUserLoginInfo (
+  case class DBUserLoginInfo(
     userID: String,
-    loginInfoId: Long
-  )
+    loginInfoId: Long)
 
   class UserLoginInfos(tag: Tag) extends Table[DBUserLoginInfo](tag, "userlogininfo") {
     def userID = column[String]("userID", O.NotNull)
@@ -47,12 +44,11 @@ object DBTableDefinitions {
     def * = (userID, loginInfoId) <> (DBUserLoginInfo.tupled, DBUserLoginInfo.unapply)
   }
 
-  case class DBPasswordInfo (
+  case class DBPasswordInfo(
     hasher: String,
     password: String,
     salt: Option[String],
-    loginInfoId: Long
-  )
+    loginInfoId: Long)
 
   class PasswordInfos(tag: Tag) extends Table[DBPasswordInfo](tag, "passwordinfo") {
     def hasher = column[String]("hasher")
@@ -62,12 +58,11 @@ object DBTableDefinitions {
     def * = (hasher, password, salt, loginInfoId) <> (DBPasswordInfo.tupled, DBPasswordInfo.unapply)
   }
 
-  case class DBOAuth1Info (
+  case class DBOAuth1Info(
     id: Option[Long],
     token: String,
     secret: String,
-    loginInfoId: Long
-  )
+    loginInfoId: Long)
 
   class OAuth1Infos(tag: Tag) extends Table[DBOAuth1Info](tag, "oauth1info") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
@@ -77,14 +72,13 @@ object DBTableDefinitions {
     def * = (id.?, token, secret, loginInfoId) <> (DBOAuth1Info.tupled, DBOAuth1Info.unapply)
   }
 
-  case class DBOAuth2Info (
+  case class DBOAuth2Info(
     id: Option[Long],
     accessToken: String,
     tokenType: Option[String],
     expiresIn: Option[Int],
     refreshToken: Option[String],
-    loginInfoId: Long
-  )
+    loginInfoId: Long)
 
   class OAuth2Infos(tag: Tag) extends Table[DBOAuth2Info](tag, "oauth2info") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
