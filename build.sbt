@@ -1,6 +1,6 @@
 import play.PlayImport.PlayKeys._
 //import net.virtualvoid.sbt.graph.Plugin._
-//import sbtbuildinfo.Plugin._
+import sbtbuildinfo.Plugin._
 //import scalariform.formatter.preferences._
 import Dependencies._
 import Webjars._
@@ -125,22 +125,22 @@ instrumentSettings
 //  .setPreference(SpaceInsideParentheses, false)
 //  .setPreference(SpacesWithinPatternBinders, true)
 
-//buildInfoSettings
+buildInfoSettings
 
-//sourceGenerators in Compile <+= buildInfo
+sourceGenerators in Compile <+= buildInfo
 
-//buildInfoKeys := Seq[BuildInfoKey](
-//  name,
-//  organization,
-//  version,
-//  scalaVersion,
-//  sbtVersion,
-//  "buildDateTime" -> System.currentTimeMillis,
-//  "commit" -> Process("git rev-parse HEAD").lines.head,
-//  scalacOptions,
-//  javacOptions,
-//  resolvers,
-//  libraryDependencies
-//)
+buildInfoKeys := Seq[BuildInfoKey](
+  name,
+  organization,
+  version,
+  scalaVersion,
+  sbtVersion,
+  "buildDateTime" -> System.currentTimeMillis,
+  "commit" -> Process("git rev-parse HEAD").lines.head,
+  scalacOptions,
+  javacOptions,
+  resolvers,
+  libraryDependencies
+)
 
-//buildInfoPackage := "com.eappearance"
+buildInfoPackage := "com.eappearance"
