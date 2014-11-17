@@ -129,18 +129,18 @@ buildInfoSettings
 
 sourceGenerators in Compile <+= buildInfo
 
-buildInfoPackage := "com.eappearance"
-
 buildInfoKeys := Seq[BuildInfoKey](
   name,
   organization,
   version,
   scalaVersion,
   sbtVersion,
-  "buildTime" -> System.currentTimeMillis,
+  "buildDateTime" -> System.currentTimeMillis,
   "commit" -> Process("git rev-parse HEAD").lines.head,
   scalacOptions,
   javacOptions,
   resolvers,
   libraryDependencies
 )
+
+buildInfoPackage := "com.eappearance"

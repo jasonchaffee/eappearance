@@ -9,6 +9,7 @@ GET         /signIn                          @controllers.ApplicationController.
 GET         /signUp                          @controllers.ApplicationController.signUp
 GET         /signOut                         @controllers.ApplicationController.signOut
 GET         /authenticate/:provider          @controllers.SocialAuthController.authenticate(provider)
+
 POST        /authenticate/credentials        @controllers.CredentialsAuthController.authenticate
 POST        /signUp                          @controllers.SignUpController.signUp
 
