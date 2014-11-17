@@ -42,9 +42,9 @@ scalacOptions in Test ~= { (options: Seq[String]) =>
   options filterNot (_ == "-Ywarn-dead-code")  // Allow dead code in tests to support using mockito.
 }
 
-scalacOptions in ScoverageTest ~= { (options: Seq[String]) =>
-  options filterNot (_ == "-Ywarn-dead-code")  // The same when running under scoverage.
-}
+//scalacOptions in ScoverageTest ~= { (options: Seq[String]) =>
+//  options filterNot (_ == "-Ywarn-dead-code")  // The same when running under scoverage.
+//}
 
 scalacOptions in (Compile, doc) ++= Seq(
   "-no-link-warnings"
