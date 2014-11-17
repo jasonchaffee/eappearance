@@ -66,7 +66,7 @@ updateOptions := updateOptions.value.withCircularDependencyLevel(CircularDepende
 
 updateOptions := updateOptions.value.withCachedResolution(true)
 
-pipelineStages := Seq(rjs, digest, gzip)
+//pipelineStages := Seq(rjs, digest, gzip)
 
 closureCompilerOptions += "ecmascript5"
 
