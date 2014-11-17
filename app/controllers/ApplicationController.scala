@@ -28,7 +28,8 @@ class ApplicationController @Inject() (implicit val env: Environment[User, Cache
       ArraignmentPlea(UUID.randomUUID(), "8398098", Defendant(UUID.randomUUID(), Some("Jason"), Some("Chaffee"), Some("Jason Chaffee")), LocalDateTime.now()),
       ArraignmentPlea(UUID.randomUUID(), "3409893", Defendant(UUID.randomUUID(), Some("Brad"), Some("Koehn"), Some("Brad Koehn")), LocalDateTime.now()),
       ArraignmentPlea(UUID.randomUUID(), "34923345", Defendant(UUID.randomUUID(), Some("Steve"), Some("Simpson"), Some("Steve Simpson")), LocalDateTime.now()),
-      ArraignmentPlea(UUID.randomUUID(), "20934890", Defendant(UUID.randomUUID(), Some("David"), Some("Morgan"), Some("David Morgan")), LocalDateTime.now())
+      ArraignmentPlea(UUID.randomUUID(), "20934890", Defendant(UUID.randomUUID(), Some("David"), Some("Morgan"), Some("David Morgan")), LocalDateTime.now()),
+      ArraignmentPlea(UUID.randomUUID(), "20934891", Defendant(UUID.randomUUID(), Some("David"), Some("Morgan"), Some("David Morgan")), LocalDateTime.now())
     )
     Future.successful(Ok(views.html.documents(request.identity, list)))
   }
