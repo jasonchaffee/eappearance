@@ -42,9 +42,9 @@ scalacOptions in Test ~= { (options: Seq[String]) =>
   options filterNot (_ == "-Ywarn-dead-code")  // Allow dead code in tests to support using mockito.
 }
 
-//scalacOptions in ScoverageTest ~= { (options: Seq[String]) =>
-//  options filterNot (_ == "-Ywarn-dead-code")  // The same when running under scoverage.
-//}
+scalacOptions in ScoverageTest ~= { (options: Seq[String]) =>
+  options filterNot (_ == "-Ywarn-dead-code")  // The same when running under scoverage.
+}
 
 scalacOptions in (Compile, doc) ++= Seq(
   "-no-link-warnings"
@@ -98,12 +98,12 @@ libraryDependencies ++= Seq(
 )
 
 //graphSettings
-//
-//instrumentSettings
-//
-////scalariformSettings
+
+instrumentSettings
+
+//scalariformSettings
 //defaultScalariformSettings
-//
+
 //ScalariformKeys.preferences := ScalariformKeys.preferences.value
 //  .setPreference(AlignParameters, true)
 //  .setPreference(AlignSingleLineCaseStatements, true)
@@ -126,9 +126,9 @@ libraryDependencies ++= Seq(
 //  .setPreference(SpacesWithinPatternBinders, true)
 
 //buildInfoSettings
-//
+
 //sourceGenerators in Compile <+= buildInfo
-//
+
 //buildInfoKeys := Seq[BuildInfoKey](
 //  name,
 //  organization,
@@ -142,5 +142,5 @@ libraryDependencies ++= Seq(
 //  resolvers,
 //  libraryDependencies
 //)
-//
+
 //buildInfoPackage := "com.eappearance"
