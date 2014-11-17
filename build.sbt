@@ -1,7 +1,7 @@
 import play.PlayImport.PlayKeys._
-import net.virtualvoid.sbt.graph.Plugin._
-import sbtbuildinfo.Plugin._
-import scalariform.formatter.preferences._
+//import net.virtualvoid.sbt.graph.Plugin._
+//import sbtbuildinfo.Plugin._
+//import scalariform.formatter.preferences._
 import Dependencies._
 import Webjars._
 
@@ -97,50 +97,50 @@ libraryDependencies ++= Seq(
   webjarsRequirejs
 )
 
-graphSettings
+//graphSettings
+//
+//instrumentSettings
+//
+////scalariformSettings
+//defaultScalariformSettings
+//
+//ScalariformKeys.preferences := ScalariformKeys.preferences.value
+//  .setPreference(AlignParameters, true)
+//  .setPreference(AlignSingleLineCaseStatements, true)
+//  .setPreference(CompactControlReadability, true)
+//  .setPreference(CompactStringConcatenation, false)
+//  .setPreference(DoubleIndentClassDeclaration, true)
+//  .setPreference(FormatXml, true)
+//  .setPreference(IndentLocalDefs, false)
+//  .setPreference(IndentPackageBlocks, true)
+//  .setPreference(IndentSpaces, 2)
+//  .setPreference(IndentWithTabs, false)
+//  .setPreference(MultilineScaladocCommentsStartOnFirstLine, false)
+//  .setPreference(PreserveDanglingCloseParenthesis, true)
+//  .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, false)
+//  .setPreference(PreserveSpaceBeforeArguments, false)
+//  .setPreference(RewriteArrowSymbols, false)
+//  .setPreference(SpaceBeforeColon, false)
+//  .setPreference(SpaceInsideBrackets, false)
+//  .setPreference(SpaceInsideParentheses, false)
+//  .setPreference(SpacesWithinPatternBinders, true)
 
-instrumentSettings
-
-//scalariformSettings
-defaultScalariformSettings
-
-ScalariformKeys.preferences := ScalariformKeys.preferences.value
-  .setPreference(AlignParameters, true)
-  .setPreference(AlignSingleLineCaseStatements, true)
-  .setPreference(CompactControlReadability, true)
-  .setPreference(CompactStringConcatenation, false)
-  .setPreference(DoubleIndentClassDeclaration, true)
-  .setPreference(FormatXml, true)
-  .setPreference(IndentLocalDefs, false)
-  .setPreference(IndentPackageBlocks, true)
-  .setPreference(IndentSpaces, 2)
-  .setPreference(IndentWithTabs, false)
-  .setPreference(MultilineScaladocCommentsStartOnFirstLine, false)
-  .setPreference(PreserveDanglingCloseParenthesis, true)
-  .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, false)
-  .setPreference(PreserveSpaceBeforeArguments, false)
-  .setPreference(RewriteArrowSymbols, false)
-  .setPreference(SpaceBeforeColon, false)
-  .setPreference(SpaceInsideBrackets, false)
-  .setPreference(SpaceInsideParentheses, false)
-  .setPreference(SpacesWithinPatternBinders, true)
-
-buildInfoSettings
-
-sourceGenerators in Compile <+= buildInfo
-
-buildInfoKeys := Seq[BuildInfoKey](
-  name,
-  organization,
-  version,
-  scalaVersion,
-  sbtVersion,
-  "buildDateTime" -> System.currentTimeMillis,
-  "commit" -> Process("git rev-parse HEAD").lines.head,
-  scalacOptions,
-  javacOptions,
-  resolvers,
-  libraryDependencies
-)
-
-buildInfoPackage := "com.eappearance"
+//buildInfoSettings
+//
+//sourceGenerators in Compile <+= buildInfo
+//
+//buildInfoKeys := Seq[BuildInfoKey](
+//  name,
+//  organization,
+//  version,
+//  scalaVersion,
+//  sbtVersion,
+//  "buildDateTime" -> System.currentTimeMillis,
+//  "commit" -> Process("git rev-parse HEAD").lines.head,
+//  scalacOptions,
+//  javacOptions,
+//  resolvers,
+//  libraryDependencies
+//)
+//
+//buildInfoPackage := "com.eappearance"
