@@ -23,7 +23,7 @@ class ApplicationController @Inject() (implicit val env: Environment[User, Cache
    *
    * @return The result to display.
    */
-  def index = UserAwareAction.async { implicit request =>
+  def index = SecuredAction.async { implicit request =>
     val list = List(
       ArraignmentPlea(UUID.randomUUID(), "8398098", Defendant(UUID.randomUUID(), Some("Jason"), Some("Chaffee"), Some("Jason Chaffee")), LocalDateTime.now()),
       ArraignmentPlea(UUID.randomUUID(), "3409893", Defendant(UUID.randomUUID(), Some("Brad"), Some("Koehn"), Some("Brad Koehn")), LocalDateTime.now()),

@@ -1,6 +1,6 @@
-@(user: Option[models.User] = None, documents: List[models.ArraignmentPlea])
+@(user: models.User, documents: List[models.ArraignmentPlea])
 
-@main("eAppearance - Documents", user) {
+@main("eAppearance - Documents", Some(user)) {
     <table class="table table-condensed table-hover">
         <thead>
             <tr>
