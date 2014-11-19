@@ -1,4 +1,4 @@
-@(user: models.User, documents: List[models.ArraignmentPlea])
+@(user: models.User, documents: Option[List[models.Document]])
 
 @main("eAppearance - Documents", Some(user)) {
     <table class="table table-condensed table-hover table-striped">
@@ -11,13 +11,15 @@
             </tr>
         </thead>
         <tbody>
-        @for(document <- documents) {
-            <tr>
-                <td>@document.caseNumber</td>
-                <td>@document.defendant.fullName</td>
-                <td>Arraignment Plea</td>
-                <td>@document.date</td>
-            </tr>
+        @documents.map { documents =>
+            @for(document <- documents) {
+                <tr>
+                    <td>@document.caseNumber</td>
+                    <td>@document.defendant.fullName</td>
+                    <td>Arraignment Plea</td>
+                    <td>@document.date</td>
+                </tr>
+            }
         }
         </tbody>
     </table>

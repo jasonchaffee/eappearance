@@ -24,14 +24,16 @@ class ApplicationController @Inject() (implicit val env: Environment[User, Cache
    * @return The result to display.
    */
   def index = SecuredAction.async { implicit request =>
-    val list = List(
-      ArraignmentPlea(UUID.randomUUID(), "8398098", Defendant(UUID.randomUUID(), Some("Jason"), Some("Chaffee"), Some("Jason Chaffee")), LocalDateTime.now()),
-      ArraignmentPlea(UUID.randomUUID(), "3409893", Defendant(UUID.randomUUID(), Some("Brad"), Some("Koehn"), Some("Brad Koehn")), LocalDateTime.now()),
-      ArraignmentPlea(UUID.randomUUID(), "34923345", Defendant(UUID.randomUUID(), Some("Steve"), Some("Simpson"), Some("Steve Simpson")), LocalDateTime.now()),
-      ArraignmentPlea(UUID.randomUUID(), "20934890", Defendant(UUID.randomUUID(), Some("David"), Some("Morgan"), Some("David Morgan")), LocalDateTime.now()),
-      ArraignmentPlea(UUID.randomUUID(), "20934891", Defendant(UUID.randomUUID(), Some("David"), Some("Morgan"), Some("David Morgan")), LocalDateTime.now())
-    )
-    Future.successful(Ok(views.html.documents(request.identity, list)))
+    Future.successful(Redirect(routes.DocumentController.documents))
+//    val user = request.identity
+//    val list = List(
+//      ArraignmentPlea(UUID.randomUUID(), user.barNumber.getOrElse(0), 8398098, Defendant(UUID.randomUUID(), Some("Jason"), Some("Chaffee"), Some("Jason Chaffee")), LocalDateTime.now()),
+//      ArraignmentPlea(UUID.randomUUID(), user.barNumber.getOrElse(0), 3409893, Defendant(UUID.randomUUID(), Some("Brad"), Some("Koehn"), Some("Brad Koehn")), LocalDateTime.now()),
+//      ArraignmentPlea(UUID.randomUUID(), user.barNumber.getOrElse(0), 34923345, Defendant(UUID.randomUUID(), Some("Steve"), Some("Simpson"), Some("Steve Simpson")), LocalDateTime.now()),
+//      ArraignmentPlea(UUID.randomUUID(), user.barNumber.getOrElse(0), 20934890, Defendant(UUID.randomUUID(), Some("David"), Some("Morgan"), Some("David Morgan")), LocalDateTime.now()),
+//      ArraignmentPlea(UUID.randomUUID(), user.barNumber.getOrElse(0), 20934891, Defendant(UUID.randomUUID(), Some("David"), Some("Morgan"), Some("David Morgan")), LocalDateTime.now())
+//    )
+//    Future.successful(Ok(views.html.documents(request.identity, list)))
   }
 
   def profile = SecuredAction.async { implicit request =>

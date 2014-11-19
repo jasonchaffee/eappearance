@@ -4,6 +4,8 @@
 
 # Home page
 GET         /                                @controllers.ApplicationController.index
+GET         /document                        @controllers.DocumentController.documentForm
+GET         /documents                       @controllers.DocumentController.documents
 GET         /profile                         @controllers.ApplicationController.profile
 GET         /signIn                          @controllers.ApplicationController.signIn
 GET         /signUp                          @controllers.ApplicationController.signUp
@@ -12,6 +14,7 @@ GET         /authenticate/:provider          @controllers.SocialAuthController.a
 
 POST        /authenticate/credentials        @controllers.CredentialsAuthController.authenticate
 POST        /signUp                          @controllers.SignUpController.signUp
+POST        /submitDocument                  @controllers.DocumentController.submit
 
 
 # Map static resources from the /public folder to the /assets URL path

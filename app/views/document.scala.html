@@ -1,0 +1,29 @@
+@(user: models.User, documentForm: Form[forms.DocumentForm.Data])(implicit request: RequestHeader)
+
+@import bootstrap._
+
+@main("eAppearance - Document Creation", Some(user))  {
+    @request.flash.get("error").map { msg =>
+        <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> @msg
+        </div>
+    }
+    <fieldset>
+        <legend class="col-md-6 col-md-offset-3">
+            Arraignment Plea and Counsel<br/>
+            Not For Use in Cases Involving Domestic Violence<br/>
+            Pursuant to Penal Code Section 977 (a)(2)
+        </legend>
+        @helper.form(action = routes.DocumentController.submit()) {
+            @text(documentForm("caseNumber"), "Case Number")
+            @text(documentForm("firstName"), "Defendant First Name")
+            @text(documentForm("lastName"), "Defendant Last Name")
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-3">
+                    <button id="submit" type="submit" value="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </div>
+        }
+    </fieldset>
+}

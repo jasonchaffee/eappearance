@@ -3,11 +3,20 @@ package models
 import java.time.LocalDateTime
 import java.util.{ Calendar, UUID }
 
+trait Document {
+  val uuid: UUID
+  val barNumber: Int
+  val caseNumber: Int
+  val defendant: Defendant
+  val date: LocalDateTime
+}
+
 case class ArraignmentPlea(
   uuid: UUID,
-  caseNumber: String,
+  barNumber: Int,
+  caseNumber: Int,
   defendant: Defendant,
-  date: LocalDateTime)
+  date: LocalDateTime) extends Document
 
 case class Defendant(
   uuid: UUID,

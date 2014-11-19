@@ -14,7 +14,7 @@ import com.mohiva.play.silhouette.core.providers.oauth1._
 import com.mohiva.play.silhouette.contrib.utils._
 import com.mohiva.play.silhouette.contrib.services._
 import com.mohiva.play.silhouette.contrib.daos.DelegableAuthInfoDAO
-import models.services.{ UserService, UserServiceImpl }
+import models.services.{DocumentService, DocumentServiceImpl, UserService, UserServiceImpl}
 import models.daos._
 import models.daos.slick._
 import models.User
@@ -28,10 +28,12 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
    * Configures the module.
    */
   def configure() {
+    bind[DocumentService].to[DocumentServiceImpl]
     bind[UserService].to[UserServiceImpl]
     val useSlick = Play.configuration.getBoolean("silhouette.seed.db.useSlick").getOrElse(false)
     if (useSlick) {
       Logger.debug("Binding to Slick DAO implementations.")
+//      bind[DocumentDAO].to[DocumentDAOSlick]
       bind[UserDAO].to[UserDAOSlick]
       bind[DelegableAuthInfoDAO[PasswordInfo]].to[PasswordInfoDAOSlick]
       bind[DelegableAuthInfoDAO[OAuth1Info]].to[OAuth1InfoDAOSlick]
@@ -39,6 +41,7 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
     }
     else {
       Logger.debug("Binding to In-Memory DAO implementations.")
+      bind[DocumentDAO].to[DocumentDAOImpl]
       bind[UserDAO].to[UserDAOImpl]
       bind[DelegableAuthInfoDAO[PasswordInfo]].to[PasswordInfoDAO]
       bind[DelegableAuthInfoDAO[OAuth1Info]].to[OAuth1InfoDAO]
