@@ -38,7 +38,7 @@ object Versions {
   lazy val play = "2.3.6"
   lazy val pmd = "5.1.3"
   lazy val powermock = "1.5.4"
-  lazy val scala = "2.11.4"
+  lazy val scala = "2.11.7"
   lazy val scalatra = "2.3.0"
   lazy val scalastyle = "0.4.0"
   lazy val scalacheck = "1.11.3"
