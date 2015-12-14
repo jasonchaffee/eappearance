@@ -1,5 +1,4 @@
 import play.PlayImport.PlayKeys._
-import net.virtualvoid.sbt.graph.Plugin._
 //import sbtbuildinfo.Plugin._
 import scalariform.formatter.preferences._
 import Dependencies._
@@ -96,8 +95,6 @@ libraryDependencies ++= Seq(
   webjarsRequireCss,
   webjarsRequirejs
 )
-
-graphSettings
 
 instrumentSettings
 
